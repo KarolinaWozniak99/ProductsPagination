@@ -23,32 +23,11 @@ export interface Props{
   products: Products | undefined;
 }
 
-
-
 function App() {
 
-  const [products, setProducts] = useState<Products | undefined>(undefined);
-
-
-  useEffect(()=>{
-    axios
-      .get(
-        `https://reqres.in/api/products?page=2`
-      )
-      .then((res) => {
-        setProducts(res.data);
-      });
-  },[])
-  console.log(products)
-  //products to jest caaaały obiekt który się pobiera, wszystko wszystko
-
-
-//ten props products={products} w formie nie bedzie potrzebny bo tam się pobiera po id
   return (
     <div className="App">
-      
-      <Form products={products}/>
-      {/* <Content products={products}/> */}
+      <Form/>
     </div>
   );
 }

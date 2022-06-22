@@ -4,10 +4,11 @@ import { NumericLiteral } from "typescript";
 import { Products, Props, SingleProduct } from "../../App";
 import Content from "../Content/Content";
 import TableRow from "../TableRow/TableRow";
+import { TextField } from "@mui/material";
 
 
 
-const Form: React.FC<Props>=({products})=>{
+const Form: React.FC=()=>{
     const inpputRef = useRef()
     const [singleProduct, setSingleProduct] = useState<SingleProduct>({name:'', id:0, year:0, color:''})
     const [clicked, setClicked] = useState(false)
@@ -24,24 +25,33 @@ const Form: React.FC<Props>=({products})=>{
             });
         }
     },[id])
-    console.log(singleProduct)
+    //console.log(singleProduct)
  
-
     return(
         <>
             <h2>Select id of post</h2>
-            <input type="number" max={12} min={1} onChange={(e:any)=> {
+            <TextField
+                type="number"
+                label="Id"
+                InputProps={{
+                    inputProps: { 
+                        max: 12, min: 1
+                    }
+                }}
+                onChange={(e:any)=> {
                 setId(e.target.value)
                 setClicked(true)
-                if(e.target.value===""){
+                console.log("Przed"+clicked)
+                if(e.target.value==""){
                     setClicked(false)
+                    console.log("Po"+clicked)
                 }
             }}/>
             {clicked && (
                 <TableRow id={singleProduct.id} name={singleProduct.name} year={singleProduct.year} color={singleProduct.color}/>
             )}
             {!clicked &&(
-                <Content products={products}/>
+                <Content/>
             )}
            
         </>
