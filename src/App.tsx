@@ -1,8 +1,8 @@
-import React,{useState, useEffect} from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import './App.css';
 import Form from './Components/Form/Form';
-import Content from './Components/Content/Content';
+import Header from './Components/Header/Header';
+import { Grid } from '@mui/material';
 
 export interface Products{
   data: Array<SingleProduct>;
@@ -27,7 +27,14 @@ function App() {
 
   return (
     <div className="App">
-      <Form/>
+      <Grid container spacing={7} justifyContent="center">
+        <Grid item xs={12}>
+          <Header/>
+        </Grid>
+        <Grid item xs={12}>
+          <Form/>
+        </Grid>
+      </Grid>
     </div>
   );
 }

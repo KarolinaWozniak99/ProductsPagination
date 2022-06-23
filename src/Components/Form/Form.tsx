@@ -3,13 +3,10 @@ import axios from "axios";
 import { NumericLiteral } from "typescript";
 import { Products, Props, SingleProduct } from "../../App";
 import Content from "../Content/Content";
-import TableRow from "../TableRow/TableRow";
-import { TextField } from "@mui/material";
-
-
+import TableElement from "../TableElement/TableElement";
+import { TableBody, TableContainer, TextField, Table, TableHead, TableCell, TableRow } from "@mui/material";
 
 const Form: React.FC=()=>{
-    const inpputRef = useRef()
     const [singleProduct, setSingleProduct] = useState<SingleProduct>({name:'', id:0, year:0, color:''})
     const [clicked, setClicked] = useState(false)
     const[id, setId] = useState(0)
@@ -25,11 +22,9 @@ const Form: React.FC=()=>{
             });
         }
     },[id])
-    //console.log(singleProduct)
  
     return(
         <>
-            <h2>Select id of post</h2>
             <TextField
                 type="number"
                 label="Id"
@@ -39,16 +34,28 @@ const Form: React.FC=()=>{
                     }
                 }}
                 onChange={(e:any)=> {
-                setId(e.target.value)
-                setClicked(true)
-                console.log("Przed"+clicked)
-                if(e.target.value==""){
-                    setClicked(false)
-                    console.log("Po"+clicked)
-                }
-            }}/>
+                    setId(e.target.value)
+                    setClicked(true)
+                    if(e.target.value==""){
+                        setClicked(false)
+                    }
+                }}
+            />
             {clicked && (
-                <TableRow id={singleProduct.id} name={singleProduct.name} year={singleProduct.year} color={singleProduct.color}/>
+                <TableContainer>
+                    <Table>
+                    <TableHead>
+                            <TableRow>
+                                <TableCell style={{fontWeight: 'bold'}}>Id</TableCell>
+                                <TableCell style={{fontWeight: 'bold'}}>Name</TableCell>
+                                <TableCell style={{fontWeight: 'bold'}}>Year</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            <TableElement id={singleProduct.id} name={singleProduct.name} year={singleProduct.year} color={singleProduct.color}/>
+                        </TableBody>
+                    </Table>
+                </TableContainer>
             )}
             {!clicked &&(
                 <Content/>
