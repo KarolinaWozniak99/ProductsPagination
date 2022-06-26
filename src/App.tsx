@@ -1,29 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
-import Form from './Components/Form/Form';
 import Header from './Components/Header/Header';
-import { Grid } from '@mui/material';
-
-export interface Products{
-  data: Array<SingleProduct>;
-  page: number;
-  per_page: number;
-  total_pages: number;
-  total: number;
-}
-
-export interface SingleProduct{
-  id: number;
-  name: string;
-  year: number;
-  color: string;
-}
-
-export interface Props{
-  products: Products | undefined;
-}
+import { Grid} from '@mui/material';
+import ProductsTable from './Components/ProductsTable/ProductsTable';
+import InputForm from './Components/InputForm/InputForm';
+import PaginationButtons from './Components/PaginantionButtons/PaginationButtons';
+import axios from 'axios';
 
 function App() {
+
+  const [isSelected, setIsSelected] = useState<boolean>(false);
+  const[id, setId] = useState(0);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [totalProducts, setTotalProducts] = useState(0);
+
+  useEffect(()=>{
+    axios
+      .get( `https://reqres.in/api/products`)
+      .then((res)=>setTotalProducts(res.data.total))
+  })
+
+  console.log(isSelected, id, pageNumber)
 
   return (
     <div className="App">
@@ -32,7 +29,15 @@ function App() {
           <Header/>
         </Grid>
         <Grid item xs={12}>
-          <Form/>
+          <InputForm setIsSelected={setIsSelected} setId={setId}/>
+        </Grid>
+        <Grid item xs={12}>
+          <ProductsTable isSelected={isSelected} id={id} pageNumber={pageNumber}/>
+        </Grid>
+        <Grid item xs={12}>
+          {(id===0) &&(
+            <PaginationButtons pageNumber={pageNumber} setPageNumber={setPageNumber} totalProducts={totalProducts}/>
+          )}
         </Grid>
       </Grid>
     </div>

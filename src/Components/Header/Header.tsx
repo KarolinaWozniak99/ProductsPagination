@@ -1,6 +1,5 @@
 import { AppBar, Typography } from "@mui/material";
 import React from "react";
-import { Products, Props, SingleProduct } from "../../App";
 
 
 const Header: React.FC=()=>{
