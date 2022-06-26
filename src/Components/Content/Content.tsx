@@ -2,6 +2,7 @@ import React,{useState, useEffect} from 'react';
 import axios from 'axios';
 import { Products } from '../TableElement/TableElement';
 import TableElement from '../TableElement/TableElement';
+import {TableCell, TableRow} from  "@mui/material";
 
 
 
@@ -15,8 +16,7 @@ const Content: React.FC<myProps>=(pageNumber:myProps)=>{
     const [productOnPage, setProductOnPage] = useState<Products | undefined>(undefined);
     const [loading, setLoading] = useState(true);
     const list = productOnPage?.data;
-
-     const productsPerPage = 5;
+    const productsPerPage = 5;
 
 
   useEffect(()=>{
@@ -32,7 +32,7 @@ const Content: React.FC<myProps>=(pageNumber:myProps)=>{
 
 
     {if(!loading){
-    return(
+        return(
            <>
                 {list!.map((el)=>{
                     return(
@@ -44,7 +44,11 @@ const Content: React.FC<myProps>=(pageNumber:myProps)=>{
     else{
         return(
             <>
-                Loading
+                <TableRow>
+                    <TableCell>
+                        Loading
+                    </TableCell>
+                </TableRow>
             </>
         )
     }}

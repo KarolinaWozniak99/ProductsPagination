@@ -19,6 +19,7 @@ const InputForm: React.FC<myProps>=({setIsSelected, setId}:myProps)=>{
  
     return(
         <TextField
+            sx={{marginTop:6}}
             type="number"
             label="Id"
             InputProps={{

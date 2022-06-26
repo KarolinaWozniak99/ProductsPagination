@@ -4,8 +4,8 @@ import React from "react";
 
 const Header: React.FC=()=>{
     return(
-       <AppBar>
-        <Typography variant="h1" sx={{fontSize: 40}}>Simple pagination app</Typography>
+       <AppBar sx={{marginBottom:2}}>
+        <Typography variant="h1" sx={{fontSize: 40, padding:1}}>Simple pagination app</Typography>
        </AppBar>
     )
 }

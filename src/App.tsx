@@ -20,11 +20,9 @@ function App() {
       .then((res)=>setTotalProducts(res.data.total))
   })
 
-  console.log(isSelected, id, pageNumber)
-
   return (
     <div className="App">
-      <Grid container spacing={7} justifyContent="center">
+      <Grid container spacing={5} justifyContent="center">
         <Grid item xs={12}>
           <Header/>
         </Grid>

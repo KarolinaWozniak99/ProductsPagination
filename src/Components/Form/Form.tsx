@@ -12,9 +12,6 @@ const Form: React.FC<myProps>=({isSelected, id}:myProps)=>{
 
     const [singleProduct, setSingleProduct] = useState<SingleProduct>({name:'', id:0, year:0, color:''})
    
-
-    console.log("Form id"+id)
-
     useEffect(()=>{
         if(isSelected){
             axios

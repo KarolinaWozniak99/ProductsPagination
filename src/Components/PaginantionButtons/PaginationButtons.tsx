@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Button, ButtonGroup } from "@mui/material";
-
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 interface myProps{
     setPageNumber: any;
@@ -32,8 +33,8 @@ const PaginationButtons: React.FC<myProps>=({ pageNumber, setPageNumber, totalPr
         <Grid item xs={4}>
         
             <ButtonGroup variant="text" aria-label="text button group">
-                <Button onClick={()=>prevClickHandler()} disabled={pageNumber===1}>Previous</Button>
-                <Button onClick={()=>nextClickHandler()} disabled={pageNumber===totalPages}>Next</Button>
+                <Button onClick={()=>prevClickHandler()} disabled={pageNumber===1}><ArrowBackIosNewIcon fontSize="small"/>Previous</Button>
+                <Button onClick={()=>nextClickHandler()} disabled={pageNumber===totalPages}>Next<ArrowForwardIosIcon fontSize="small"/> </Button>
             </ButtonGroup>
                 
         </Grid>
